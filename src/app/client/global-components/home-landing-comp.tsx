@@ -1,7 +1,9 @@
 "use client";
 import React from "react";
-import { LogIn, UserPlus, Mail } from "lucide-react";
+
+import { MdMail, MdLogin, MdLogout } from "react-icons/md";
 import { MdDashboard } from "react-icons/md";
+import { MdSettings } from "react-icons/md";
 
 const HomeLandingComponent = () => {
   const [logged, isLogged] = React.useState<boolean>(false);
@@ -9,55 +11,92 @@ const HomeLandingComponent = () => {
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-blue-800 via-indigo-800 to-purple-700">
       {/* Top Bar */}
-      <header className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-4 z-10 bg-transparent text-white">
-        <h1 className="text-2xl font-bold">Next Dev</h1>
+      {/* First Header */}
+      <header className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-4 z-20 bg-transparent text-white">
+        <h1 className="text-3xl font-bold">Next Dev</h1>
         {!logged ? (
           <div className="flex gap-6 text-lg font-medium items-center">
             <a
               href="/contact"
-              className="flex items-center gap-1 hover:underline "
+              className="flex items-center gap-1 hover:underline"
             >
-              <Mail size={20} className="cursor-pointer" />
+              <MdSettings size={20} className="cursor-pointer" />
             </a>
-
+            <a
+              href="/contact"
+              className="flex items-center gap-1 hover:underline"
+            >
+              <MdMail size={20} className="cursor-pointer" />
+            </a>
             <a
               href="/login"
-              className="flex items-center gap-1 hover:underline "
+              className="flex items-center gap-1 hover:underline"
             >
-              <LogIn size={20} className="cursor-pointer" />
+              <MdLogin size={20} className="cursor-pointer" />
             </a>
             <a
               href="/signup"
-              className="flex items-center gap-1 hover:underline "
+              className="flex items-center gap-1 hover:underline"
             >
-              <UserPlus className="cursor-pointer" size={20} />
+              <MdLogout className="cursor-pointer" size={20} />
             </a>
           </div>
         ) : admin ? (
-          <div className="flex gap-6 text-lg font-medium items-center ">
+          <div className="flex gap-6 text-lg font-medium items-center">
             <a
               href="/contact"
-              className="flex items-center gap-1 hover:underline cursor-pointer"
+              className="flex items-center gap-1 hover:underline"
             >
-              <Mail size={20} />
+              <MdMail size={20} />
             </a>
             <a
-              href="/contact"
-              className="flex items-center gap-1 hover:underline cursor-pointer"
+              href="/admin"
+              className="flex items-center gap-1 hover:underline"
             >
               <MdDashboard size={20} />
             </a>
-          </div>
-        ) : (
-          <div className="flex gap-6 text-lg font-medium items-center ">
             <a
               href="/contact"
-              className="flex items-center gap-1 hover:underline cursor-pointer"
+              className="flex items-center gap-1 hover:underline"
             >
-              <Mail size={20} />
+              <MdSettings size={20} />
+            </a>
+          </div>
+        ) : (
+          <div className="flex gap-6 text-lg font-medium items-center">
+            <a
+              href="/contact"
+              className="flex items-center gap-1 hover:underline"
+            >
+              <MdMail size={20} />
+            </a>
+            <a
+              href="/contact"
+              className="flex items-center gap-1 hover:underline"
+            >
+              <MdSettings size={20} />
             </a>
           </div>
         )}
+      </header>
+
+      {/* Second Header (below the first one) */}
+      <header className="absolute top-16 right-0 px-8 py-2 w-full flex justify-center bg-transparent text-white z-10 text-2xl">
+        <div className="flex gap-6 text-md font-medium items-center">
+          <a href="/profile" className="hover:underline cursor-pointer">
+            Profile
+          </a>
+          <a href="/teams" className="hover:underline cursor-pointer">
+            Teams
+          </a>
+          <a href="/contact" className="hover:underline cursor-pointer">
+            Contact Us
+          </a>
+
+          <a href="/admin" className="hover:underline cursor-pointer">
+            Dashboard
+          </a>
+        </div>
       </header>
 
       {/* Caption */}
