@@ -115,10 +115,12 @@ const HomeLandingComponent = () => {
         {!logged && (
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl w-full px-4">
             <a
-              href="/features"
+              href="/client/chat-service"
               className="bg-white/10 backdrop-blur p-6 rounded-xl border border-white/20 hover:scale-105 transition-transform"
             >
-              <h3 className="text-xl font-semibold mb-2">Explore Features</h3>
+              <h3 className="text-xl font-semibold mb-2">
+                Explore Chat Features
+              </h3>
               <p className="text-sm text-white/80">
                 Discover what makes our platform powerful and unique.
               </p>

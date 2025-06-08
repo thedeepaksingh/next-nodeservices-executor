@@ -1,9 +1,13 @@
-"use client";
-import React from "react";
-import HomeLandingComponentWithUser from "./global-components/home-landing-comp";
+"use client"
 
-export default function Home() {
-  const [logged, isLogged] = React.useState<boolean>(true);
+import React, { useEffect } from "react";
 
-  return <HomeLandingComponentWithUser />;
-}
+const Client = () => {
+  useEffect(() => {
+    window.location.href = "http://localhost:3000/client/chat-service";
+  }, []);
+
+  return null;
+};
+
+export default Client;
