@@ -2,6 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import ChatComponent from "./Chat-Comp";
+import LoginPage from "../auth/login/page";
+import TopBar from "./teams-components/top-bar-teams-comp";
 
 type UserMaster = {
   id: string;
@@ -12,6 +15,8 @@ const TeamsMasterPage = () => {
   const [users, setUsers] = useState<UserMaster[]>([]);
   const [currentUser, setCurrentUser] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -58,36 +63,28 @@ const TeamsMasterPage = () => {
 
   return (
     <div className="flex flex-col w-full h-full">
-      {/* 🔝 Fixed Top Bar */}
-      <div className="w-full h-14 bg-white text-black flex items-center px-4 shadow z-10">
-        <div className="flex-1">
-          <input
-            type="text"
-            placeholder="Search..."
-            className="bg-white text-black px-3 py-1 rounded w-full max-w-lg border-purple-600 outline-purple-600"
-          />
-        </div>
-        <div className="flex items-center gap-4 ml-4">
-          <button className="hover:text-purple-400">🔔</button>
-          <button className="hover:text-purple-400">⚙️</button>
-          <button className="hover:text-purple-400">👤</button>
-        </div>
-      </div>
+      <TopBar
+        setIsModalOpen={function (v: boolean): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
+
+      <LoginPage isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
       {/* 🔲 Panel Layout Below Top Bar */}
       <div className="flex-1 overflow-hidden">
         <PanelGroup direction="horizontal" className="flex w-full h-full">
           {/* Left Chat Panel */}
           <Panel
-            defaultSize={20}
-            minSize={20}
+            defaultSize={15}
+            minSize={10}
             maxSize={20}
-            className="bg-white border-r border-gray-800 p-4 flex flex-col overflow-auto"
+            className="bg-black p-4 flex flex-col overflow-auto border-t-2"
           >
-            <h2 className="text-xl font-semibold mb-4 border-b-2 border-slate-600">
-              Chat
-            </h2>
-            <ul className="space-y-3 overflow-y-auto">
+            {/* <h2 className="text-md font-semibold mb-4 border-b-2 border-slate-600"> */}
+            {/* Chat */}
+            {/* </h2> */}
+            <ul className="space-y-1 overflow-y-auto">
               {users &&
                 users.map((user) => {
                   const label = user.fullName.includes("Deepak")
@@ -97,7 +94,7 @@ const TeamsMasterPage = () => {
                   return (
                     <li
                       key={user.id}
-                      className="bg-white px-2 py-1 text-black hover:text-white hover:bg-black cursor-pointer"
+                      className="bg-black px-2 py-1 text-white text-xs rounded hover:text-white hover:bg-slate-900 cursor-pointer"
                     >
                       {label}
                     </li>
@@ -106,30 +103,27 @@ const TeamsMasterPage = () => {
             </ul>
           </Panel>
 
-          <PanelResizeHandle className="w-1 bg-purple-800 cursor-col-resize" />
+          <PanelResizeHandle className="w-0.5 hover:bg-white cursor-col-resize" />
 
           {/* Center Welcome Panel */}
-          <Panel className="p-6 overflow-y-auto flex flex-col">
-            <h1 className="text-xl font-bold mb-4">Welcome to the Chat</h1>
-            <p className="text-sm text-black">
-              Select a user to start a conversation.
-            </p>
+          <Panel className="p-6 overflow-y-auto flex flex-col border-t-2">
+            <ChatComponent />
           </Panel>
 
-          <PanelResizeHandle className="w-1 bg-purple-800 cursor-col-resize" />
+          {/* <PanelResizeHandle className="w-1 bg-purple-800 cursor-col-resize" /> */}
 
           {/* Right Panel (Details) */}
-          <Panel
+          {/* <Panel
             defaultSize={20}
             minSize={15}
             maxSize={30}
-            className="bg-white p-4 flex flex-col overflow-auto"
+            className="bg-black p-4 flex flex-col overflow-auto"
           >
             <h2 className="text-lg font-semibold mb-2">Details</h2>
             <p className="text-sm text-black">
               This panel can show user info, settings, etc.
             </p>
-          </Panel>
+          </Panel> */}
         </PanelGroup>
       </div>
     </div>

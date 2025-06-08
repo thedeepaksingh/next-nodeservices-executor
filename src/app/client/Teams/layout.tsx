@@ -1,4 +1,4 @@
-// No "use client" here unless absolutely required
+// "use client";
 
 import React from "react";
 import { IoMdChatbubbles } from "react-icons/io";
@@ -14,9 +14,9 @@ export default function TeamsMasterLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex h-screen overflow-hidden bg-white text-black">
+    <div className="flex h-screen overflow-hidden bg-black text-white">
       {/* Sidebar */}
-      <aside className="w-20 bg-white border-r border-gray-800 flex flex-col items-center py-4 space-y-8">
+      <aside className="w-20 bg-black border-r-2 flex flex-col items-center py-4 space-y-8">
         <div className="w-10 h-10 rounded-full flex justify-center items-center relative group">
           <IoMdChatbubbles
             className="text-purple-600 cursor-pointer"
@@ -60,10 +60,7 @@ export default function TeamsMasterLayout({
           </div>
         </div>
         <div className="w-10 h-10 rounded-full flex justify-center items-center relative group">
-          <CgProfile
-            className="text-purple-600 cursor-pointer"
-            size={25}
-          />
+          <CgProfile className="text-purple-600 cursor-pointer" size={25} />
           <div className="absolute top-full mt-2 left-1/2 -translate-x-1/2 bg-purple-700 text-white text-xs rounded px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-50 whitespace-nowrap">
             Profile
           </div>
@@ -81,8 +78,6 @@ export default function TeamsMasterLayout({
         <div className="w-10 h-10 bg-white/20 rounded-full"></div>
         <div className="w-10 h-10 bg-white/20 rounded-full"></div> */}
       </aside>
-
-      
 
       <div className="flex flex-1">{children}</div>
     </div>
